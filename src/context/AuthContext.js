@@ -1,14 +1,11 @@
 import React, { createContext, useReducer, useEffect } from "react";
 
-// Inisialisasi context
 const AuthContext = createContext();
 
-// Inisialisasi state awal
 const initialState = {
   token: localStorage.getItem("token") || null, // Ambil token dari localStorage
 };
 
-// Reducer untuk mengelola state autentikasi
 const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_SUCCESS":
@@ -27,7 +24,6 @@ const authReducer = (state, action) => {
   }
 };
 
-// Penyedia context
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 

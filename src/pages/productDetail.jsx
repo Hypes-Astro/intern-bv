@@ -21,23 +21,32 @@ const ProductDetail = () => {
     };
   }, [id, dispatch]);
 
-  if (!productDetail) return <div>Loading...</div>;
+  if (!productDetail)
+    return (
+      <div className="text-center h-screen flex justify-center items-center">
+        Loading...
+      </div>
+    );
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
+      <div className="w-full max-w-xl flex gap-12 bg-white p-8 rounded-lg shadow-lg">
         <img
           src={productDetail.image}
           alt={productDetail.title}
-          className="w-full h-auto mb-4"
+          className="w-1/2  h-auto mb-4 object-contain mx-auto"
         />
-        <h2 className="text-2xl font-bold mb-4">{productDetail.title}</h2>
-        <p className="text-gray-600 mb-4">${productDetail.price}</p>
-        <p className="mb-4">{productDetail.description}</p>
-        <p className="text-gray-600">
-          {productDetail.rating.rate} stars ({productDetail.rating.count}{" "}
-          reviews)
-        </p>
+
+        <div className="info w-full">
+          {" "}
+          <h2 className="text-2xl font-bold mb-4">{productDetail.title}</h2>
+          <p className="text-gray-600 mb-4">${productDetail.price}</p>
+          <p className="mb-4">{productDetail.description}</p>
+          <p className="text-gray-600">
+            {productDetail.rating.rate} stars ({productDetail.rating.count}{" "}
+            reviews)
+          </p>
+        </div>
       </div>
     </div>
   );

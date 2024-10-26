@@ -8,7 +8,7 @@ const LoginForm = () => {
   const { dispatch } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Deklarasi useNavigate untuk redirect
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

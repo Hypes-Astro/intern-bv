@@ -2,12 +2,13 @@ import React, { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import Link dan useNavigate untuk navigasi
 import ProductContext from "../../context/ProductContext";
 import AuthContext from "../../context/AuthContext"; // Import AuthContext untuk logout
+import ProductCard from "../ui/ProductCard";
 
 const ProductGrid = ({ category }) => {
   const { state, dispatch } = useContext(ProductContext);
   const { dispatch: authDispatch } = useContext(AuthContext); // Dapatkan dispatch dari AuthContext
   const { products, allProducts, limit, sort, page, totalPages } = state;
-  const navigate = useNavigate(); // Digunakan untuk navigasi setelah logout
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     authDispatch({ type: "LOGOUT" });
@@ -87,20 +88,7 @@ const ProductGrid = ({ category }) => {
       {/* Grid Produk */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <div key={product.id} className="bg-white p-4 rounded-lg shadow-lg">
-            <Link to={`/products/${product.id}`}>
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-full h-48 object-cover mb-4"
-              />
-              <h2 className="text-lg font-bold mb-2">{product.title}</h2>
-              <p className="text-gray-600 mb-2">${product.price}</p>
-              <p className="text-gray-600">
-                {product.rating.rate} stars ({product.rating.count} reviews)
-              </p>
-            </Link>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
